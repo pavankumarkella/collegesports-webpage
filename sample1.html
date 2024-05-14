@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bar Graph with Sub-Fields</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .graph-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            width: 80vw;
+            height: 400px;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+
+        .bar {
+            flex: 1;
+            margin: 0 5px;
+            text-align: center;
+        }
+
+        .bar div {
+            width: 100%;
+            background-color: #4CAF50;
+            text-align: center;
+            padding: 5px 0;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="graph-container" id="graph-container">
+        <!-- Bars will be added here dynamically using JavaScript -->
+    </div>
+
+    <script>
+        const data = [
+            {
+                field: "Field A",
+                subFields: [
+                    { subField: "SubField A1", value: 50, color: "#4CAF50" },
+                    { subField: "SubField A2", value: 100, color: "#2196F3" }
+                ]
+            },
+            {
+                field: "Field B",
+                subFields: [
+                    { subField: "SubField B1", value: 70, color: "#f44336" }
+                ]
+            }
+            // Add more fields with sub-fields as needed
+        ];
+
+        const graphContainer = document.getElementById('graph-container');
+
+        data.forEach(item => {
+            const bar = document.createElement('div');
+            bar.className = 'bar';
+
+            item.subFields.forEach(subField => {
+                const subFieldHeight = subField.value * 2; // Scale for the sub-field height
+                bar.innerHTML += `<div style="height: ${subFieldHeight}px; background-color: ${subField.color};">${subField.subField}</div>`;
+            });
+
+            graphContainer.appendChild(bar);
+        });
+    </script>
+</body>
+
+</html>

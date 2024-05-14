@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <style>
+            body {
+                margin: 0;
+                overflow: hidden;
+              }
+              
+              * {
+                box-sizing: border-boxd;
+              }
+              
+              input {
+                display: none;
+                height: 0;
+                width: 0;
+              }
+              
+              label {
+                cursor: pointer;
+              }
+              
+              .gallery {
+                width: 100vw;
+                height: 100vh;
+                display: flex;
+                position: relative;
+              }
+              
+              .wall {
+                background-color: #f3f3f3;
+                background-image: linear-gradient(90deg, transparent, #e3e3e3);
+                height: 100%;
+              }
+              
+              .left-side {
+                width: 60%;
+              }
+              
+              .right-side {
+                width: 40%;
+              }
+              
+              .floor {
+                background-color: #d9d9d9;
+                background-image: linear-gradient(34deg, black, transparent);
+                position: absolute;
+                width: 500%;
+                height: 100%;
+                bottom: -60%;
+                right: 40%;
+                transform: skew(60deg);
+                transform-origin: top;
+              }
+              
+              .floor-effect {
+                position: absolute;
+                width: 63vw;
+                height: 32vh;
+                background-image: linear-gradient(180deg, rgb(0 0 0 / 5%), transparent);
+                top: 60vh;
+                right: 40vw;
+              }
+              
+              .frame {
+                position: absolute;
+                background-color: rgb(187, 187, 187);
+                background-position: center;
+                background-size: cover;
+                cursor: pointer;
+                transition: transform 0.58s, filter 0.42s ease-out, z-index 0.5s step-end;
+                box-shadow: 0 0 2px 0px, 0 0 0px 4px #896513;
+                z-index: 0;
+              }
+              
+              .frame:before {
+                content: '';
+                position: absolute;
+                left: -3px;
+                top: -3px;
+                width: calc(100% + 6px);
+                height: calc(100% + 6px);
+                box-shadow: 0 0 10px 8px #ffffff;
+                background-color: #f3f3f3;
+                opacity: 0;
+                transition: opacity 0.23s cubic-bezier(0.165, 0.84, 0.44, 1);
+              }
+              
+              .frame1 {
+                background-image: url("img1.png");
+                left: 6vw;
+                top: 10vh;
+                width: 14vw;
+                height: 10vw;
+                max-width: 140px;
+                max-height: 100px;
+              }
+              
+              .frame2 {
+                background-image: url("img2.png");
+                left: 24vw;
+                top: 8vh;
+                width: 12vw;
+                height: 16vw;
+                max-width: 120px;
+                max-height: 160px;
+              }
+              
+              .frame3 {
+                background-image: url("img3.png");
+                left:40vw;
+                top: 12vh;
+                width: 14vw;
+                height: 10vw;
+                max-width: 140px;
+                max-height: 100px;
+              }
+              
+              .frame4 {
+                background-image: url("img4.png");
+                right: 25vw;
+                top: 12vh;
+                width: 14vw;
+                height: 10vw;
+                max-width: 140px;
+                max-height: 100px;
+                transform: perspective(20vw) rotateY(-45deg);
+              }
+              
+              .frame5 {
+                background-image: url("img5.png");
+                right: 6vw;
+                top: 12vh;
+                width: 15vw;
+                height: 20vw;
+                max-width: 150px;
+                max-height: 200px;
+                transform: perspective(20vw) rotateY(-30deg);
+              }
+              .text{
+                background-color: grey;
+
+              }
+              
+              #fr1:checked ~ .frames label div.frame1,
+              #fr2:checked ~ .frames label div.frame2,
+              #fr3:checked ~ .frames label div.frame3,
+              #fr4:checked ~ .frames label div.frame4,
+              #fr5:checked ~ .frames label div.frame5 {
+                transition: 0.42s cubic-bezier(0.455, 0.03, 0.515, 0.955), z-index 0s;
+                filter: saturate(1);
+                z-index: 1;
+              }
+              
+              #fr1:checked ~ .frames label div.frame1 {
+                transform: translate(38vw, 24vh) scale(3.2);
+              }
+              
+              #fr2:checked ~ .frames label div.frame2 {
+                transform: translate(20vw, 24vh) scale(2.8);
+              }
+              
+              #fr3:checked ~ .frames label div.frame3 {
+                transform: translate(4vw, 24vh) scale(3.2);
+              }
+              
+              #fr4:checked ~ .frames label div.frame4 {
+                transform: translate(-26vw, 24vh) scale(3.2);
+              }
+              
+              #fr5:checked ~ .frames label div.frame5 {
+                transform: translate(-44vw, 24vh) scale(2.5);
+              }
+              
+              .frames .frame:hover:before {
+                opacity: 0.12 ease-in;
+              }
+              
+              #gl ~ input:checked ~ .frames label[for="gl"] {
+                height: 100vh;
+                width: 100vw;
+                position: absolute;
+                left: 0;
+                top: 0;
+                z-index: 2;
+              }
+              
+              #gl ~ input:checked ~ .frames .frame {
+                filter: saturate(0) blur(1px) opacity(0.83);
+              }
+        </style>
+        <div>
+            <p><center>------Welcome to------</center></p>
+            <h1><center>Sports Gallery</center></h2>
+        </div>
+    <div class="gallery">
+
+        <input type="radio" name="fr" id="gl" checked>
+        <input type="radio" name="fr" id="fr1">
+        <input type="radio" name="fr" id="fr2">
+        <input type="radio" name="fr" id="fr3">
+        <input type="radio" name="fr" id="fr4">
+        <input type="radio" name="fr" id="fr5">
+        <div class="wall left-side"></div>
+        <div class="wall right-side"></div>
+        <div class="floor"></div>
+        <div class="floor-effect"></div>
+        <div class="frames">
+          <label for="fr1"><div class="frame frame1">
+          </div></label>
+          <label for="fr2"><div class="frame frame2"></div></label>
+          <label for="fr3"><div class="frame frame3"></div></label>
+          <label for="fr4"><div class="frame frame4"></div></label>
+          <label for="fr5"><div class="frame frame5"></div></label>
+          <label for="gl"></label>
+        </div>
+      </div>
+    </body>
+</html>

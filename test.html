@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Centered Header</title>
+    <style>
+        /* Variables */
+:root {
+    --content-width: calc(40vw - 84px);
+    --margin: 20px;
+    --spacing: 20px;
+    --bdrs: 6px;
+    --circle-size: 40px;
+    --icon-size: 32px;
+    --bdrs-icon: 100%;
+  
+    --color1: #9251ac;
+    --color2: #f6a4ec;
+  
+    --color3: #87bbfe;
+    --color4: #555ac0;
+  
+    --color5: #24b47e;
+    --color6: #aff1b6;
+  }
+  
+  /* Global Styles */
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-size: 14px;
+  }
+          h2 {
+    margin: 5%;
+    text-align: center;
+    font-size: 4rem;
+    font-weight: 100;
+  }
+  
+  h1 {
+    margin: 4%;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 10;
+    top: 0;
+  }
+  
+  /* Timeline Styles */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    margin: var(--margin) auto;
+    position: relative;
+  }
+  
+  .timeline__event {
+    margin-bottom: var(--spacing);
+    position: relative;
+    display: flex;
+    margin: var(--spacing) 0;
+    border-radius: var(--bdrs);
+    align-self: center;
+    width: 50vw;
+  }
+  
+  /* Alternating Odd and Even Styles */
+  .timeline__event:nth-child(2n + 1) {
+    flex-direction: row-reverse;
+  }
+  
+  .timeline__event:nth-child(2n + 1) .timeline__event__date {
+    border-radius: 0 var(--bdrs) var(--bdrs) 0;
+  }
+  
+  .timeline__event:nth-child(2n + 1) .timeline__event__content {
+    border-radius: var(--bdrs) 0 0 var(--bdrs);
+  }
+  
+  /* Timeline Event Title */
+  .timeline__event__title {
+    font-size: 1.2rem;
+    line-height: 1.4;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--color1);
+    letter-spacing: 1.5px;
+  }
+  
+  /* Timeline Event Content */
+  .timeline__event__content {
+    padding: var(--spacing);
+    box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
+      0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+    background: #fff;
+    width: var(--content-width);
+    border-radius: 0 var(--bdrs) var(--bdrs) 0;
+  }
+  
+  /* Timeline Event Date */
+  .timeline__event__date {
+    color: var(--color2);
+    font-size: 1.5rem;
+    font-weight: 600;
+    background: var(--color1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    padding: 0 var(--spacing);
+    border-radius: var(--bdrs) 0 0 var(--bdrs);
+  }
+  
+  /* Timeline Event Icon */
+  .timeline__event__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color1);
+    padding: var(--spacing);
+    align-self: center;
+    margin: 0 var(--spacing);
+    background: var(--color2);
+    border-radius: var(--bdrs-icon);
+    width: var(--circle-size);
+    box-shadow: 0 30px 60px -12px rgba(50, 50, 93, 0.25),
+      0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
+    padding: 40px;
+    height: var(--circle-size);
+    posit ion: relative;
+  }
+  
+  /* Icon Styles */
+  .timeline__event__icon i {
+    font-size: var(--icon-size);
+  }
+  
+  /* Icon Borders */
+  .timeline__event__icon:before,
+  .timeline__event__icon:after {
+    content: "";
+    width: 2px;
+    height: 100%;
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .timeline__event__icon:before {
+    background: var(--color2);
+    animation: fillTop 2s forwards 4s ease-in-out;
+  }
+  
+  .timeline__event__icon:after {
+    background: var(--color2);
+    animation: fillLeft 2s forwards 4s ease-in-out;
+  }
+  
+  /* Special Cases */
+  .timeline__event:last-child .timeline__event__icon:before {
+    content: none;
+  }
+  
+  /* Odd/Even Type 2 and Type 3 */
+  .timeline__event--type2:after,
+  .timeline__event--type3:after {
+    background: var(--color4);
+  }
+  
+  .timeline__event--type2 .timeline__event__date {
+    color: var(--color3);
+    background: var(--color4);
+  }
+  
+  .timeline__event--type2 .timeline__event__icon:before,
+  .timeline__event--type2 .timeline__event__icon:after {
+    background: var(--color3);
+  }
+  
+  .timeline__event--type2 .timeline__event__icon {
+    background: var(--color3);
+    color: var(--color4);
+  }
+  
+  .timeline__event--type2 .timeline__event__title,
+  .timeline__event--type3 .timeline__event__title {
+    color: var(--color4);
+  }
+  
+  .timeline__event--type3 .timeline__event__date {
+    color: var(--color6);
+    background-color: var(--color5);
+  }
+  
+  .timeline__event--type3 .timeline__event__icon:before,
+  .timeline__event--type3 .timeline__event__icon:after {
+    background: var(--color6);
+  }
+  
+  .timeline__event--type3 .timeline__event__icon {
+    background: var(--color6);
+    color: var(--color5);
+  }
+  
+  /* Media Query for Smaller Screens */
+  @media (max-width: 786px) {
+    .timeline__event {
+      flex-direction: column;
+      align-self: center;
+    }
+  
+    .timeline__event__content {
+      width: 100%;
+    }
+  
+    .timeline__event__icon {
+      border-radius: var(--bdrs) var(--bdrs) 0 0;
+      width: 100%;
+      margin: 0;
+      box-shadow
+      : none;
+    }
+  
+    .timeline__event__icon:before,
+    .timeline__event__icon:after {
+      display: none;
+    }
+  
+    .timeline__event:nth-child(2n + 1) {
+      flex-direction: column;
+      align-self: center;
+    }
+  
+    .timeline__event:nth-child(2n + 1) .timeline__event__date {
+      border-radius: 0;
+      padding: var(--spacing);
+    }
+  
+    .timeline__event:nth-child(2n + 1) .timeline__event__icon {
+      border-radius: var(--bdrs) var(--bdrs) 0 0;
+      margin: 0;
+    }
+  }
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin: 0;
+        }
+
+        .image-container {
+            margin: auto;
+            display: flex;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .image-div {
+            flex: 0 0 calc(33.33% - 20px);
+            /* Adjust the width as needed */
+            margin: 10px;
+            text-align: center;
+            border: 2px solid #f75700;
+            border-style:dashed;
+            /* You can adjust the width and color of the border */
+            padding: 10px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 5px;
+            background-color: #f2f2f2;
+        }
+
+        .text {
+            color: #000000;
+            font-size: 15px;
+            padding: 8px 12px;
+            text-align: center;
+        }
+
+        .scroll-button-right {
+            top: 1600px;
+            display: block;
+            position: absolute;
+            z-index: 99;
+            right: -70px;
+            background: #fff;
+            color: #f75700;
+            border: none;
+            border-radius: 50px;
+            padding: 11px 15px;
+            border: 1px solid #f75700;
+        }
+        .scroll-button-left {
+            position: absolute;
+            top: 1150px;
+            z-index: 99;
+            left: -100px;
+            background: #fff;
+            color: #f75700;
+            border-radius: 50px;
+            padding: 11px 15px;
+            border: 1px solid #f75700;
+        }
+        #scroll-left {
+            left: 10px;
+        }
+
+        #scroll-right {
+            right: 10px;
+        }
+
+        .slider-container {
+            width: 80%;
+            overflow: hidden;
+            position: relative;
+            align-self: center;
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+        }
+
+        .dots-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .dot {
+            height: 10px;
+            width: 10px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background-color: #333;
+        }
+
+        .sports {
+            display:block;
+            justify-content: space-between;
+            border-radius: 5vh;
+            text-align: center;
+            margin: 50px;
+            padding: 20px;
+            border: 0.2vw dashed #ff7f0a;
+            background-color: white;
+            
+        }
+        #links-container {
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px;
+            
+        }
+        .link-box {
+            text-align: center;
+            width: calc(15% - 20px);
+            padding: 50px ;
+            margin: 10px; /* Add margin to create space between link boxes */
+            border: 1px solid #cccccc;
+            background-color: #f9f9f9;
+        }
+        .link-box img {
+            width: 100px;
+            height: 100px;
+        }
+        .main {
+		text-align:center;
+	}
+	.marq {
+		padding-top:5px;
+		padding-bottom:5px;
+	}
+	.geek1 {
+		font-size:20px;
+		font-weight:bold;
+		color:white;
+		padding-bottom:10px;
+	}
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        background-color: #0cd813a4; /* Button Background Color */
+        color: white; /* Text Color */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* Smooth transition for background color */
+    }
+
+    .button:hover {
+        background-color: #45a049; /* Button Background Color on Hover */
+    }
+
+    /* Additional Styles for Different States */
+    .button:active {
+        background-color: #3e8e41; /* Button Background Color when Active (pressed) */
+    }
+    .card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+.announcement {
+        display: inline-block;
+        height: 100%;
+        text-align: center;
+        width: 100%;
+        background: black;
+        color: white;
+        font-family: Arial, sans;
+        margin: 0;
+        padding: 0;
+        vertical-align: middle;
+        font-size: 0.8em;
+      }
+      
+      .announcement a { 
+        color: #ccc; 
+      }
+      
+      .announcement a:hover {
+        color: red;
+      }
+
+    </style>
+</head>
+
+<body>
+    <img src="head.jpg">
+    <div class = "main">
+        <marquee class="marq" style="background-color: #ff7f0a;" direction = "left" loop="" >
+            <div class="geek1">Event Updates Links Event Updates Links Event Updates Links Event Updates Links Event Updates Links </div>
+        </marquee>
+        </div>
+        <div class="announcement">
+            <p>Hurry up!! Register fast!&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="https://docs.google.com/forms/d/e/1FAIpQLSfuD0vdr5aBjmNZfRwQFUpauYL2Ii8uWScR_WNLb75U5MIVrA/viewform?embedded=true">Register here ></a></p>
+          </div>
+    
+    <div class="slider-container"style="float: left;">
+        <div class="slider">
+            <div class="slide">
+                <img src="scroll1.jpg" alt="Image 1">
+            </div>
+            <div class="slide">
+                <img src="scroll2.jpg" alt="Image 2">
+            </div>
+            <div class="slide">
+                <img src="scroll5.jpg" alt="Image 2">
+            </div>
+            <!-- Add more slide elements for additional images -->
+        </div>
+        <div class="dots-container">
+            <!-- Dots will be added here dynamically using JavaScript -->
+        </div>
+    </div>
+    <br><br><br><br>
+    <a class="button" href="gallary.html">Gallery</a>
+    <br><br><br><br>
+    <a class="button" href="events.html">   Events  </a>
+    <br><br><br><br>
+    <a class="button" href="collegeteams.html">College Teams</a>
+    <p style="clear: left;"></p>
+    <div class="sports"><h1 style="text-align: center;">SPORTS</h1>
+        <p>
+            Sports provide a structured platform for goal setting, motivating students to work towards personal and team objectives.
+            These activities also encourage healthy lifestyle habits, including proper nutrition, regular exercise, and avoiding harmful substances, promoting lifelong well-being.
+            Better academic performance is often associated with sports participation, as students apply the discipline and time management skills they develop in sports to their studies.
+        </p>
+    </div>
+    <h2 style="text-align: center;">PVPSITIANS TIMELINE</h2>
+    <button class="scroll-button-left" id="scroll-left"><</button>
+    <div class="image-container">
+        <div class="image-div">
+            <img src="img1.jpeg">
+            <div class="text">VIVA VVIT  National fest<br>400mts Running<br>Gold Medal<br>2018-2019</div>
+        </div>
+        <div class="image-div">
+            <img src="img1.jpeg" alt="Image 2">
+            <div class="text">VIVA VVIT  National fest<br>100mts RunningSilver Medal<br>2018-2019</div>
+        </div>
+        <div class="image-div">
+            <img src="img2.jpeg" alt="Image 3">
+            <div class="text">Guntur District taekwondo tournament<br>Roller Sports<br>Gold Medal<br>2018-2019 </div>
+        </div>
+        <div class="image-div">
+            <img src="img3.jpeg" alt="Image 3">
+            <div class="text">All India Inter University Inline roller Hockey sports<br>Silver Medal<br>2018-2019 </div>
+        </div>
+        <div class="image-div">
+            <img src="img3.jpeg" alt="Image 3">
+            <div class="text">National  level Vignan Mahostav-2020 on 30.1.2020-01.2.2020<br>Gold Medal under -74kg weight category in Taekwondo<br>2019-2020</div>
+        </div>
+
+        <div class="image-div">
+            <img src="img4.jpeg" alt="Image 2">
+            <div class="text">JNTUK, Kakinada Inter - collegiate swimming  competitions of Central zone held  at PVP Siddhartha Institute Of Technology, Kanuru on 15-12-2021.<br>50mts. Free style Swimming(men)<br>Gold Medal<br>2021-2022</div>
+        </div>
+        <div class="image-div">
+            <img src="img4.jpeg" alt="Image 1">
+            <div class="text">JNTUK, Kakinada Inter - collegiate swimming  competitions of Central zone held  at  JNTUK University college of Engineering, Narasaraopet on  09-12-2022.<br>100mts Breast Stroke Swimming(men)<br>Gold Medal<br>2022-2023</div>
+        </div>
+        <!-- Add more image-div elements as needed -->
+
+    </div>
+    <button class="scroll-button-right" id="scroll-right">></button>
+    <h2>ACHIEVEMENTS</h2>
+    <div class="timeline">
+        <!-- First Event -->
+        <div class="timeline__event animated fadeInUp delay-3s timeline__event--type1">
+            <div class="timeline__event__icon">
+                <!-- You can add an icon or content here if needed -->
+            </div>
+            <div class="timeline__event__date">
+                2022-2023
+            </div>
+            <div class="timeline__event__content">
+                <div class="timeline__event__title">
+                    Achievements
+                </div>
+                <div class="timeline__event__description">
+                    <p>12 State/University level medals<br>9 National level medals..<a href="2022-2023.pdf">Read More..!</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Event -->
+        <div class="timeline__event animated fadeInUp delay-2s timeline__event--type2">
+            <div class="timeline__event__icon">
+                <!-- You can add an icon or content here if needed -->
+            </div>
+            <div class="timeline__event__date">
+                2021-2022
+            </div>
+            <div class="timeline__event__content">
+                <div class="timeline__event__title">
+                    ACHIEVEMENTS
+                </div>
+                <div class="timeline__event__description">
+                    <p>19 State/University level medals<br>5 National level medals<br> 1 International level medals..<a href ="2021-2022.pdf">Read More..!</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Third Event -->
+        <div class="timeline__event animated fadeInUp delay-1s timeline__event--type3">
+            <div class="timeline__event__icon">
+                <!-- You can add an icon or content here if needed -->
+            </div>
+            <div class="timeline__event__date">
+                2020-2021
+            </div>
+            <div class="timeline__event__content">
+                <div class="timeline__event__title">
+                    ACHIEVEMENTS
+                </div>
+                <div class="timeline__event__description">
+                    <p>42 Intramural Competations are conducted by PVPSIT<a href ="2020-2021.pdf">Read More..!</a></p>
+
+                </div>
+            </div>
+        </div>
+        <div class="timeline__event animated fadeInUp delay-2s timeline__event--type2">
+            <div class="timeline__event__icon">
+                <!-- You can add an icon or content here if needed -->
+            </div>
+            <div class="timeline__event__date">
+                2019-2020
+            </div>
+            <div class="timeline__event__content">
+                <div class="timeline__event__title">
+                    ACHIEVEMENTS
+                </div>
+                <div class="timeline__event__description">
+                    <p>5 State/University level medals<br>9 National level medals..<a href="2019-2020">Read More..!</a></p>
+
+                </div>
+            </div>
+        </div>
+        <div class="timeline__event animated fadeInUp delay-2s timeline__event--type2">
+            <div class="timeline__event__icon">
+                <!-- You can add an icon or content here if needed -->
+            </div>
+            <div class="timeline__event__date">
+                2018-2019
+            </div>
+            <div class="timeline__event__content">
+                <div class="timeline__event__title">
+                    ACHIEVEMENTS
+                </div>
+                <div class="timeline__event__description">
+                    <p>5 State/University level medals<br>6 National level medals<br> 1 International level medals..<a href="2018-2019">Read More..!</a></p>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1 style="text-align: center;">Indoor & Outdoor Sports Facilities</h1>
+    <div id="links-container">
+        <div class="link-box">
+            <p>cricket</p>
+            <img src="cricket.jpg">
+            <p>Availabilty:1</p>
+        </div>
+        <div class="link-box">
+            <p>volley Ball</p>
+            <img src="volleyball.jpg">
+            <p>Availabilty:1</p>
+        </div>
+        <div class="link-box">
+            <p>Basket Ball</p>
+            <img src="basketball.png">
+            <p>Availabilty:1</p>
+        </div>
+        <div class="link-box">
+            <p>Badminton</p>
+            <img src="badminton2.png">
+            <p>Availabilty:1</p>
+        </div>
+        <div class="link-box">
+            <p>Ball Badminton</p>
+            <img src="ballbadminton.jpg">
+            <p>Availabilty:1</p>
+        </div>
+        <div class="link-box">
+            <p>Tennicoit</p>
+            <img src="tennicoit.jpg">
+            <p>Availabilty:1</p>
+        </div>
+        <div class="link-box">
+            <p>Chess</p>
+            <img src="chess.jpg">
+            <p>Availabilty:1</p>
+        </div>
+        <div class="link-box">
+            <p>Carrom</p>
+            <img src="carrom.jpg">
+            <p>Availabilty:1</p>
+        </div>
+        <div class="link-box">
+            <p>Foot Ball</p>
+            <img src="football.jpg">
+            <p>Availabilty:1</p>
+        </div>
+        <div class="link-box">
+            <p>Throw Ball</p>
+            <img src="throwball.jpg">
+            <p>Availabilty:1</p>
+        </div>
+        <div class="link-box">
+            <p>Table Tennis</p>
+            <img src="table_tennis.jpg">
+            <p>Availabilty:1</p>
+        </div>
+        <div class="link-box">
+            <p>Horizantal Bars</p>
+            <img src="horizontalbars.jpg">
+            <p>Availabilty:1</p>
+        </div>
+        <div class="link-box">
+            <p>Parllel Bars</p>
+            <img src="parallelbars.jpg">
+            <p>Availabilty:1</p>
+        </div>
+        <!-- Add more link boxes as needed -->
+    </div>
+    <h1 style="text-align: center;">Department of Physical Education Staff Members</h1>
+    <div class="card">
+        <img src="https://static.toiimg.com/photo/msid-96937391/96937391.jpg"alt="John" style="width:100%">
+        <h1>M.Sambasiva Rao</h1>
+        <p class="title">Designation</p>
+        <p>Physical Director</p>
+
+        <div style="margin: 24px 0;">
+          <a href="#"><i class="fa fa-dribbble"></i></a> 
+          <a href="#"><i class="fa fa-twitter"></i></a>  
+          <a href="#"><i class="fa fa-linkedin"></i></a>  
+          <a href="#"><i class="fa fa-facebook"></i></a> 
+        </div>
+        <p><button>Contact</button></p>
+      </div>
+    <script>
+        // Get the image container, scroll buttons, and individual image divs
+        var container = document.querySelector('.image-container');
+        var scrollLeftButton = document.getElementById('scroll-left');
+        var scrollRightButton = document.getElementById('scroll-right');
+        var imageDivs = document.querySelectorAll('.image-div');
+        var currentIndex = 0; // Current index of the first visible image div
+
+        // Add click event listeners to the scroll buttons
+        scrollLeftButton.addEventListener('click', function () {
+            if (currentIndex > 0) {
+                currentIndex--;
+                container.scrollTo({
+                    left: imageDivs[currentIndex].offsetLeft,
+                    behavior: 'smooth'
+                });
+            }
+        });
+        scrollRightButton.addEventListener('click', function () {
+            if (currentIndex < imageDivs.length - 3) {
+                currentIndex++;
+                container.scrollTo({
+                    left: imageDivs[currentIndex].offsetLeft,
+                    behavior: 'smooth'
+                });
+            }
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const slider = document.querySelector(".slider");
+            const slides = document.querySelectorAll(".slide");
+            const dotsContainer = document.querySelector(".dots-container");
+
+            // Create dots dynamically based on the number of slides
+            slides.forEach((_, index) => {
+                const dot = document.createElement("div");
+                dot.classList.add("dot");
+                dotsContainer.appendChild(dot);
+                dot.addEventListener("click", () => {
+                    goToSlide(index);
+                });
+            });
+
+            const dots = document.querySelectorAll(".dot");
+            let currentIndex = 0;
+
+            function goToSlide(index) {
+                currentIndex = index;
+                updateSlider();
+                updateDots();
+            }
+
+            function updateSlider() {
+                const translateValue = -currentIndex * slides[0].offsetWidth;
+                slider.style.transform = `translateX(${translateValue}px)`;
+            }
+
+            function updateDots() {
+                dots.forEach((dot, index) => {
+                    if (index === currentIndex) {
+                        dot.classList.add("active");
+                    } else {
+                        dot.classList.remove("active");
+                    }
+                });
+            }
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateSlider();
+                updateDots();
+            }
+
+            function startAutoScroll() {
+                setInterval(nextSlide, 3000); // Change slide every 3 seconds
+            }
+
+            startAutoScroll();
+        });
+        const buttons = document.querySelectorAll('.button');
+        const maxWidth = Math.max(...Array.from(buttons).map(button => button.clientWidth));
+        buttons.forEach(button => {
+            button.style.width = maxWidth + 'px';
+        });
+    </script>
+
+</body>
+
+</html>
